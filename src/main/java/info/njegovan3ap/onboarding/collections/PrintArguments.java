@@ -1,14 +1,16 @@
 package info.njegovan3ap.onboarding.collections;
 
-import org.springframework.stereotype.Component;
-
 import java.util.Collection;
 
-@Component
-public class PrintArguments {
+/**
+ * Write a program that prints its arguments in random order.
+ * Do not make a copy of the argument array.
+ * Demonstrate how to print out the elements using both streams and the traditional enhanced for statement.
+ */
+class PrintArguments {
     private final Collection collection;
 
-    public PrintArguments(Collection collection) {
+    PrintArguments(Collection collection) {
         this.collection = collection;
     }
 
