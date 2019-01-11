@@ -2,7 +2,7 @@ package info.njegovan3ap.onboarding.collections;
 
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class FindDupsTest {
     private final String[] arr = {"asdfok", "erowe", "qoiqwAjosdosm", "wqowjqwdn", "asdasd"};

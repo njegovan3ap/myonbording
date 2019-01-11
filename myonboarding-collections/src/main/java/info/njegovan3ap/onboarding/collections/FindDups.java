@@ -1,6 +1,8 @@
 package info.njegovan3ap.onboarding.collections;
 
-import java.util.*;
+import java.util.Arrays;
+import java.util.Set;
+import java.util.TreeSet;
 
 /**
  * Take the FindDups example and modify it to use a SortedSet instead of a Set.

@@ -1,4 +1,4 @@
-package info.njegovan3ap.onboarding;
+package info.njegovan3ap.onboarding.api;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
