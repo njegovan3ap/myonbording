@@ -15,7 +15,7 @@
     </parent>
     <groupId>info.njegovan3ap</groupId>
     <artifactId>onboarding</artifactId>
-    <version>0.0.2-SNAPSHOT</version>
+    <version>0.0.3-SNAPSHOT</version>
     <name>onboarding</name>
     <description>Onboarding tasks</description>
 
