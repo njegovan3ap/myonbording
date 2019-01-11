@@ -12,6 +12,7 @@ public class OnboardingApplicationTest {
     @Test
     public void contextLoads() {
         System.out.println("Started with Spring application...");
+        System.out.println("Branch sync...");
     }
 
 }
