@@ -1,33 +1,36 @@
-package info.njegovan3ap.onboarding.services.impl;
+package info.njegovan3ap.onboarding.services.crud.impl;
 
 import info.njegovan3ap.onboarding.domain.User;
 import info.njegovan3ap.onboarding.repositories.UserRepository;
-import info.njegovan3ap.onboarding.services.UserService;
+import info.njegovan3ap.onboarding.services.crud.UserCRUDService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.HashSet;
-import java.util.Set;
+import java.util.List;
+import java.util.Optional;
 
 @Service
-public class UserServiceImpl implements UserService {
+public class UserCRUDServiceImpl implements UserCRUDService {
     private final UserRepository userRepository;
 
     @Autowired
-    public UserServiceImpl(UserRepository userRepository) {
+    public UserCRUDServiceImpl(UserRepository userRepository) {
         this.userRepository = userRepository;
     }
 
     @Override
-    public Set<User> findAll() {
-        Set<User> users = new HashSet<>();
-        userRepository.findAll().forEach(users::add);
-        return users;
+    public List<User> findAll() {
+        return userRepository.findAll();
     }
 
     @Override
     public User findById(Long aLong) {
         return userRepository.findById(aLong).orElse(null);
+    }
+
+    @Override
+    public Optional<User> findByUuid(String uuid) {
+        return userRepository.findByUuid(uuid);
     }
 
     @Override

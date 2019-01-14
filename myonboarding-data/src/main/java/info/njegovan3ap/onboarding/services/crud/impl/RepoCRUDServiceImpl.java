@@ -1,33 +1,36 @@
-package info.njegovan3ap.onboarding.services.impl;
+package info.njegovan3ap.onboarding.services.crud.impl;
 
 import info.njegovan3ap.onboarding.domain.Repo;
 import info.njegovan3ap.onboarding.repositories.RepoRepository;
-import info.njegovan3ap.onboarding.services.RepoService;
+import info.njegovan3ap.onboarding.services.crud.RepoCRUDService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.HashSet;
-import java.util.Set;
+import java.util.List;
+import java.util.Optional;
 
 @Service
-public class RepoServiceImpl implements RepoService {
+public class RepoCRUDServiceImpl implements RepoCRUDService {
     private final RepoRepository repoRepository;
 
     @Autowired
-    public RepoServiceImpl(RepoRepository repoRepository) {
+    public RepoCRUDServiceImpl(RepoRepository repoRepository) {
         this.repoRepository = repoRepository;
     }
 
     @Override
-    public Set<Repo> findAll() {
-        Set<Repo> repos = new HashSet<>();
-        repoRepository.findAll().forEach(repos::add);
-        return repos;
+    public List<Repo> findAll() {
+        return repoRepository.findAll();
     }
 
     @Override
     public Repo findById(Long aLong) {
         return repoRepository.findById(aLong).orElse(null);
+    }
+
+    @Override
+    public Optional<Repo> findByUuid(String uuid) {
+        return repoRepository.findByUuid(uuid);
     }
 
     @Override

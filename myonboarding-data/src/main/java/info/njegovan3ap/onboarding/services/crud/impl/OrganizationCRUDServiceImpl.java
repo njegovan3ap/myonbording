@@ -1,33 +1,36 @@
-package info.njegovan3ap.onboarding.services.impl;
+package info.njegovan3ap.onboarding.services.crud.impl;
 
 import info.njegovan3ap.onboarding.domain.Organization;
 import info.njegovan3ap.onboarding.repositories.OrganizationRepository;
-import info.njegovan3ap.onboarding.services.OrganizationService;
+import info.njegovan3ap.onboarding.services.crud.OrganizationCRUDService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.HashSet;
-import java.util.Set;
+import java.util.List;
+import java.util.Optional;
 
 @Service
-public class OrganizationServiceImpl implements OrganizationService {
+public class OrganizationCRUDServiceImpl implements OrganizationCRUDService {
     private final OrganizationRepository organizationRepository;
 
     @Autowired
-    public OrganizationServiceImpl(OrganizationRepository organizationRepository) {
+    public OrganizationCRUDServiceImpl(OrganizationRepository organizationRepository) {
         this.organizationRepository = organizationRepository;
     }
 
     @Override
-    public Set<Organization> findAll() {
-        Set<Organization> organizations = new HashSet<>();
-        organizationRepository.findAll().forEach(organizations::add);
-        return organizations;
+    public List<Organization> findAll() {
+        return organizationRepository.findAll();
     }
 
     @Override
     public Organization findById(Long aLong) {
         return organizationRepository.findById(aLong).orElse(null);
+    }
+
+    @Override
+    public Optional<Organization> findByUuid(String uuid) {
+        return organizationRepository.findByUuid(uuid);
     }
 
     @Override

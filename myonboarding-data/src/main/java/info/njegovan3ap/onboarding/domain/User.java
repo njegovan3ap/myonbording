@@ -3,7 +3,6 @@ package info.njegovan3ap.onboarding.domain;
 import lombok.*;
 
 import javax.persistence.*;
-import java.util.HashSet;
 import java.util.Set;
 
 @Setter
@@ -14,13 +13,16 @@ import java.util.Set;
 @Entity
 @Table(name = "users")
 public class User extends BaseEntity {
-    private String firstName, lastName, email, address;
+    private String firstName, lastName, email;
 
-    @ManyToMany(fetch = FetchType.LAZY)
+    @ManyToMany
     @JoinTable(
             name = "user_repositories",
             joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "repo_id")
     )
-    private Set<Repo> repositories = new HashSet<>();
+    private Set<Repo> repositories;
+
+    @ManyToMany(mappedBy = "users")
+    private Set<Organization>  organizations;
 }

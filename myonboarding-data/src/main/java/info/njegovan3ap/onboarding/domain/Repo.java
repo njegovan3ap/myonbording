@@ -2,8 +2,8 @@ package info.njegovan3ap.onboarding.domain;
 
 import lombok.*;
 
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import javax.persistence.*;
+import java.util.Set;
 
 @Setter
 @Getter
@@ -14,4 +14,11 @@ import javax.persistence.Table;
 @Table(name = "repositories")
 public class Repo extends BaseEntity {
     private String title;
+
+    @ManyToOne
+    @JoinColumn(name = "org_id")
+    private Organization organization;
+
+    @ManyToMany(mappedBy = "repositories")
+    private Set<User> users;
 }
