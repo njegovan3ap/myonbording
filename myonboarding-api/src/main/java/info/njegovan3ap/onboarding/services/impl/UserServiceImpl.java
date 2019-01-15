@@ -1,6 +1,7 @@
 package info.njegovan3ap.onboarding.services.impl;
 
 import info.njegovan3ap.onboarding.domain.User;
+import info.njegovan3ap.onboarding.mapper.CycleAvoidingMappingContext;
 import info.njegovan3ap.onboarding.mapper.UserMapper;
 import info.njegovan3ap.onboarding.model.UserDTO;
 import info.njegovan3ap.onboarding.model.UserListDTO;
@@ -27,19 +28,19 @@ public class UserServiceImpl implements UserService {
         List<UserDTO> userDTOS = userCRUDService
                 .findAll()
                 .stream()
-                .map(userMapper::userToUserDTO)
+                .map((User user) -> userMapper.userToUserDTO(user, new CycleAvoidingMappingContext()))
                 .collect(Collectors.toList());
         return new UserListDTO(userDTOS);
     }
 
     @Override
     public UserDTO getUserByUuid(String uuid) {
-        return userMapper.userToUserDTO(userCRUDService.findByUuid(uuid).get());
+        return userMapper.userToUserDTO(userCRUDService.findByUuid(uuid).get(), new CycleAvoidingMappingContext());
     }
 
     @Override
     public UserDTO createNewUser(UserDTO userDTO) {
-        return userMapper.userToUserDTO(userCRUDService.save(userMapper.userDTOToUser(userDTO)));
+        return userMapper.userToUserDTO(userCRUDService.save(userMapper.userDTOToUser(userDTO, new CycleAvoidingMappingContext())), new CycleAvoidingMappingContext());
     }
 
     @Override
@@ -68,6 +69,6 @@ public class UserServiceImpl implements UserService {
     }
 
     UserDTO saveAndReturnDTO(User user) {
-        return userMapper.userToUserDTO(userCRUDService.save(user));
+        return userMapper.userToUserDTO(userCRUDService.save(user), new CycleAvoidingMappingContext());
     }
 }

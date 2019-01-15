@@ -17,7 +17,7 @@ class UserMapperTest {
     void userToUserDTO() {
         User user = User.builder().firstName(FIRST_NAME).lastName(LAST_NAME).email(EMAIL_ADDRESS).build();
 
-        UserDTO userDTO = userMapper.userToUserDTO(user);
+        UserDTO userDTO = userMapper.userToUserDTO(user, new CycleAvoidingMappingContext());
 
         assertEquals(FIRST_NAME, userDTO.getFirstName());
         assertEquals(LAST_NAME, userDTO.getLastName());
@@ -31,7 +31,7 @@ class UserMapperTest {
         userDTO.setLastName(LAST_NAME);
         userDTO.setEmail(EMAIL_ADDRESS);
 
-        User user = userMapper.userDTOToUser(userDTO);
+        User user = userMapper.userDTOToUser(userDTO, new CycleAvoidingMappingContext());
 
         assertEquals(FIRST_NAME, user.getFirstName());
         assertEquals(LAST_NAME, user.getLastName());
