@@ -6,6 +6,7 @@
         <module>myonboarding-data</module>
         <module>myonboarding-api</module>
         <module>myonboarding-collections</module>
+        <module>myonboarding-concurrency</module>
     </modules>
     <parent>
         <groupId>org.springframework.boot</groupId>
